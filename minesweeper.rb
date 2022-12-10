@@ -1,8 +1,8 @@
 class Minesweeper
     def self.start
-        x1 = [{ d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }]
-        x2 = [{ d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }]
-        x3 = [{ d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }, { d: "■", n: 0, m: false, f: false }]
+        x1 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
+        x2 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
+        x3 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
         b = [x1, x2, x3]
 
         mine1 = [rand(0..2), rand(0..2)]
