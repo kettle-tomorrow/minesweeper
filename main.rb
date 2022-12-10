@@ -1,0 +1,3 @@
+require './minesweeper'
+
+Minesweeper.start

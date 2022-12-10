@@ -92,5 +92,3 @@ class Minesweeper
         puts "マインスイーパを終了します。"
     end
 end
-
-Minesweeper.start
