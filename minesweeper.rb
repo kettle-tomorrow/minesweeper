@@ -2,15 +2,19 @@ require './board'
 require './mines'
 
 class Minesweeper
+  MINE_COUNT = 2
+  ROW_COUNT = 3
+  COLUMN_COUNT = 3
+
   def self.start
     board = Board.new(
-      mine_count: 2,
-      row_count: 3,
-      column_count: 3,
+      mine_count: MINE_COUNT,
+      row_count: ROW_COUNT,
+      column_count: COLUMN_COUNT,
     )
 
     puts "マインスイーパを開始します。"
-    puts "爆弾は全部で#{2}個あります。"
+    puts "爆弾は全部で#{MINE_COUNT}個あります。"
     puts "回答を入力してください。(例: 1,1)"
     puts board.current_board
 
