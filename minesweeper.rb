@@ -18,8 +18,8 @@ class Minesweeper
 
         loop do
             line = gets.split(',')
-            x = line[0].to_i
-            y = line[1].to_i
+            x = line[0].to_i - 1
+            y = line[1].to_i - 1
             if board.mine?(row_number: x, squire_number: y)
                 puts "爆弾です。"
                 break 

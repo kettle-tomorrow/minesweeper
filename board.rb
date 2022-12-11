@@ -60,10 +60,10 @@ class Board
   end
 
   def mine?(row_number:, squire_number:)
-    rows[row_number-1][squire_number-1][:m] == true
+    rows[row_number][squire_number][:m] == true
   end
 
   def open(row_number:, squire_number:)
-    rows[row_number-1][squire_number-1][:d] = rows[row_number-1][squire_number-1][:n]
+    rows[row_number][squire_number][:d] = rows[row_number][squire_number][:n]
   end
 end
