@@ -4,6 +4,8 @@ class Minesweeper
     def self.start
       board = Board.new(
         mines: Mines.generate(mine_count: 2, x_max: 2, y_max: 2),
+        row_count: 3,
+        squire_count: 3,
       )
 
       puts "マインスイーパを開始します。"

@@ -1,18 +1,23 @@
 class Board
   attr_reader :rows
 
-  def initialize(mines:)
-    row1 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
-    row2 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
-    row3 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
-    @rows = [row1, row2, row3]
-
-    mines.each { |mine| set_mine(mine) }
-
+  def initialize(mines:, row_count:, squire_count:)
     @row_min = 0
-    @row_max = @rows.size - 1
+    @row_max = row_count - 1
     @squire_min = 0
-    @squire_max = @rows.first.size - 1
+    @squire_max = squire_count - 1
+
+    @rows = (0..@row_max).map do
+      (0..@squire_max).map do
+        {
+          display: "■",
+          arround_mine_number: 0,
+          is_mine: false
+        }
+      end
+    end
+
+    mines.each { |mine| @rows[mine[0]][mine[1]][:is_mine] = true }
 
     set_arround_mine_numbers
   end
@@ -42,10 +47,6 @@ class Board
   end
 
   private
-
-  def set_mine(mine)
-    @rows[mine[0]][mine[1]][:is_mine] = true
-  end
 
   def set_arround_mine_numbers
     (@row_min..@row_max).each do |i|
