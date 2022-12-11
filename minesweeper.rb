@@ -14,9 +14,9 @@ class Minesweeper
         puts "マインスイーパを開始します。"
         puts "爆弾は全部で#{2}個あります。"
         puts "回答を入力してください。(例: 1,1)"
-        puts board.render_current_squires
+        puts board.current_board
 
-        b = board.squires
+        b = board.rows
 
         loop do
             line = gets.split(',')

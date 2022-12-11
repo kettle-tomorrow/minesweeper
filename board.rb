@@ -1,5 +1,5 @@
 class Board
-  attr_reader :squires
+  attr_reader :rows
 
   def initialize(mines:)
     x1 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
@@ -52,10 +52,10 @@ class Board
       end
     end
 
-    @squires = b
+    @rows = b
   end
 
-  def render_current_squires
-    squires.map { |row| row.map { |squire| squire[:d] }.join(" ") }
+  def current_board
+    rows.map { |row| row.map { |squire| squire[:d] }.join(" ") }
   end
 end
