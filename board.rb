@@ -2,80 +2,78 @@ class Board
   attr_reader :rows
 
   def initialize(mines:)
-    x1 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
-    x2 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
-    x3 = [{ d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }, { d: "■", n: 0, m: false }]
-    b = [x1, x2, x3]
+    row1 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
+    row2 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
+    row3 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
+    @rows = [row1, row2, row3]
 
     mine1 = mines[0]
     mine2 = mines[1]
 
-    b[mine1[0]][mine1[1]][:m] = true
-    b[mine2[0]][mine2[1]][:m] = true
+    @rows[mine1[0]][mine1[1]][:is_mine] = true
+    @rows[mine2[0]][mine2[1]][:is_mine] = true
 
     (0..2).each do |i|
       (0..2).each do |j|
-        if b[i][j][:m] == false
+        if @rows[i][j][:is_mine] == false
           top = i - 1
           down = i + 1
           left = j - 1
           right = j + 1
           if top >= 0
-            b[i][j][:n] += 1 if b[top][j][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[top][j][:is_mine] == true
           end
           if down <= 2
-             b[i][j][:n] += 1 if b[down][j][:m] == true
+             @rows[i][j][:arround_mine_number] += 1 if @rows[down][j][:is_mine] == true
           end
           if left >= 0
-            b[i][j][:n] += 1 if b[i][left][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[i][left][:is_mine] == true
           end
           if right <= 2
-            b[i][j][:n] += 1 if b[i][right][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[i][right][:is_mine] == true
           end
           top_left = [top, left]
           top_right = [top, right]
           down_left = [down, left]
           down_right = [down, right]
           if top_left[0] >= 0 && top_left[1] >= 0
-            b[i][j][:n] += 1 if b[top_left[0]][top_left[1]][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[top_left[0]][top_left[1]][:is_mine] == true
           end
           if top_right[0] >= 0 && top_right[1] <= 2
-            b[i][j][:n] += 1 if b[top_right[0]][top_right[1]][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[top_right[0]][top_right[1]][:is_mine] == true
           end
           if down_left[0] <= 2 && down_left[1] >= 0
-            b[i][j][:n] += 1 if b[down_left[0]][down_left[1]][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[down_left[0]][down_left[1]][:is_mine] == true
           end
           if down_right[0] <= 2 && down_right[1] <= 2
-            b[i][j][:n] += 1 if b[down_right[0]][down_right[1]][:m] == true
+            @rows[i][j][:arround_mine_number] += 1 if @rows[down_right[0]][down_right[1]][:is_mine] == true
           end
         end
       end
     end
-
-    @rows = b
   end
 
   def current_board
-    rows.map { |row| row.map { |squire| squire[:d] }.join(" ") }
+    @rows.map { |row| row.map { |squire| squire[:display] }.join(" ") }
   end
 
   def mine?(row_number:, squire_number:)
-    rows[row_number][squire_number][:m] == true
+    @rows[row_number][squire_number][:is_mine] == true
   end
 
   def open(row_number:, squire_number:)
-    rows[row_number][squire_number][:d] = rows[row_number][squire_number][:n]
+    @rows[row_number][squire_number][:display] = @rows[row_number][squire_number][:arround_mine_number]
   end
 
   def completed?
-    rows.all? do |row|
+    @rows.all? do |row|
       row.all? do |squire|
-        squire[:d] != "■" || squire[:m] == true
+        squire[:display] != "■" || squire[:is_mine] == true
       end
     end
   end
 
   def completed_board
-    rows.map { |row| row.map { |squire| squire[:m] == true ? "✖" : squire[:d] }.join(" ") }
+    @rows.map { |row| row.map { |squire| squire[:is_mine] == true ? "✖" : squire[:display] }.join(" ") }
   end
 end
