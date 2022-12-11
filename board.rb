@@ -7,7 +7,7 @@ class Board
     row3 = [{ display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }, { display: "■", arround_mine_number: 0, is_mine: false }]
     @rows = [row1, row2, row3]
 
-    mines.each { |mine| set_mines(mine) }
+    mines.each { |mine| set_mine(mine) }
 
     @row_min = 0
     @row_max = @rows.size - 1
@@ -43,7 +43,7 @@ class Board
 
   private
 
-  def set_mines(mine)
+  def set_mine(mine)
     @rows[mine[0]][mine[1]][:is_mine] = true
   end
 
