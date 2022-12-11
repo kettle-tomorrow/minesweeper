@@ -9,12 +9,14 @@ class Minesweeper
           break if mine1 != mine2
           mine2 = [rand(0..2), rand(0..2)]
         end
-        b = Board.new(mines: [mine1, mine2]).squires
+        board = Board.new(mines: [mine1, mine2])
         
         puts "マインスイーパを開始します。"
         puts "爆弾は全部で#{2}個あります。"
         puts "回答を入力してください。(例: 1,1)"
-        puts b.map { |x| x.map { |s| s[:d] }.join(" ") }
+        puts board.render_current_squires
+
+        b = board.squires
 
         loop do
             line = gets.split(',')

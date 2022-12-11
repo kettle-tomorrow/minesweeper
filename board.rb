@@ -54,4 +54,8 @@ class Board
 
     @squires = b
   end
+
+  def render_current_squires
+    squires.map { |row| row.map { |squire| squire[:d] }.join(" ") }
+  end
 end
