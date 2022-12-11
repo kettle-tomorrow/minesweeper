@@ -38,7 +38,7 @@ class Minesweeper
             puts "次の回答を入力してください。"
             puts "---"
 
-            puts board.rows.map { |x| x.map { |y| y[:d] }.join(" ") }
+            puts board.current_board
         end
 
         puts "マインスイーパを終了します。"
