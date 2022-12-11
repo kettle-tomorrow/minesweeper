@@ -66,4 +66,12 @@ class Board
   def open(row_number:, squire_number:)
     rows[row_number][squire_number][:d] = rows[row_number][squire_number][:n]
   end
+
+  def completed?
+    rows.all? do |row|
+      row.all? do |squire|
+        squire[:d] != "■" || squire[:m] == true
+      end
+    end
+  end
 end

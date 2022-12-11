@@ -26,13 +26,7 @@ class Minesweeper
             end
             board.open(row_number: x, squire_number: y)
 
-            cl = board.rows.all? do |x|
-                x.all? do |h|
-                    h[:d] != "■" || h[:m] == true
-                end
-            end
-
-            if cl == true
+            if board.completed?
                 puts "---"
                 puts "クリアです。"
                 puts "---"
