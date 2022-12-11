@@ -16,19 +16,17 @@ class Minesweeper
         puts "回答を入力してください。(例: 1,1)"
         puts board.current_board
 
-        b = board.rows
-
         loop do
             line = gets.split(',')
             x = line[0].to_i
             y = line[1].to_i
-            if b[x-1][y-1][:m] == true
+            if board.rows[x-1][y-1][:m] == true
                 puts "爆弾です。"
                 break 
             end
-            b[x-1][y-1][:d] = b[x-1][y-1][:n]
+            board.rows[x-1][y-1][:d] = board.rows[x-1][y-1][:n]
 
-            cl = b.all? do |x|
+            cl = board.rows.all? do |x|
                 x.all? do |h|
                     h[:d] != "■" || h[:m] == true
                 end
@@ -38,7 +36,7 @@ class Minesweeper
                 puts "---"
                 puts "クリアです。"
                 puts "---"
-                puts b.map { |x| x.map { |s| s[:m] == true ? "✖" : s[:d] }.join(" ") }
+                puts board.rows.map { |x| x.map { |s| s[:m] == true ? "✖" : s[:d] }.join(" ") }
                 break
             end
 
@@ -46,7 +44,7 @@ class Minesweeper
             puts "次の回答を入力してください。"
             puts "---"
 
-            puts b.map { |x| x.map { |y| y[:d] }.join(" ") }
+            puts board.rows.map { |x| x.map { |y| y[:d] }.join(" ") }
         end
 
         puts "マインスイーパを終了します。"
