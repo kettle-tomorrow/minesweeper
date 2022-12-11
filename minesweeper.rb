@@ -4,9 +4,9 @@ require './mines'
 class Minesweeper
     def self.start
       board = Board.new(
-        mines: Mines.generate(mine_count: 2, x_max: 2, y_max: 2),
+        mine_count: 2,
         row_count: 3,
-        squire_count: 3,
+        column_count: 3,
       )
 
       puts "マインスイーパを開始します。"
@@ -16,13 +16,13 @@ class Minesweeper
 
       loop do
         line = gets.split(',')
-        x = line[0].to_i - 1
-        y = line[1].to_i - 1
-        if board.mine?(row_number: x, squire_number: y)
+        row_input = line[0].to_i - 1
+        column_input = line[1].to_i - 1
+        if board.mine?(row_number: row_input, column_number: column_input)
           puts "爆弾です。"
           break 
         end
-        board.open(row_number: x, squire_number: y)
+        board.open(row_number: row_input, column_number: column_input)
 
         if board.completed?
           puts "---"
