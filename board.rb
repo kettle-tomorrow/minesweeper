@@ -62,4 +62,8 @@ class Board
   def is_mine?(row_number:, squire_number:)
     rows[row_number-1][squire_number-1][:m] == true
   end
+
+  def open(row_number:, squire_number:)
+    rows[row_number-1][squire_number-1][:d] = rows[row_number-1][squire_number-1][:n]
+  end
 end

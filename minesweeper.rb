@@ -24,7 +24,7 @@ class Minesweeper
                 puts "爆弾です。"
                 break 
             end
-            board.rows[x-1][y-1][:d] = board.rows[x-1][y-1][:n]
+            board.open(row_number: x, squire_number: y)
 
             cl = board.rows.all? do |x|
                 x.all? do |h|
