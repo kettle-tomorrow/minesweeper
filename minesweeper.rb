@@ -1,4 +1,5 @@
 require './board'
+require './mines'
 
 class Minesweeper
     def self.start
