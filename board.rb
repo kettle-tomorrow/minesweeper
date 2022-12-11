@@ -59,7 +59,7 @@ class Board
     rows.map { |row| row.map { |squire| squire[:d] }.join(" ") }
   end
 
-  def is_mine?(row_number:, squire_number:)
+  def mine?(row_number:, squire_number:)
     rows[row_number-1][squire_number-1][:m] == true
   end
 

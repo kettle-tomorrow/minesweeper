@@ -20,7 +20,7 @@ class Minesweeper
             line = gets.split(',')
             x = line[0].to_i
             y = line[1].to_i
-            if board.is_mine?(row_number: x, squire_number: y)
+            if board.mine?(row_number: x, squire_number: y)
                 puts "爆弾です。"
                 break 
             end
