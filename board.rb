@@ -74,4 +74,8 @@ class Board
       end
     end
   end
+
+  def completed_board
+    rows.map { |row| row.map { |squire| squire[:m] == true ? "✖" : squire[:d] }.join(" ") }
+  end
 end

@@ -30,7 +30,7 @@ class Minesweeper
                 puts "---"
                 puts "クリアです。"
                 puts "---"
-                puts board.rows.map { |x| x.map { |s| s[:m] == true ? "✖" : s[:d] }.join(" ") }
+                puts board.completed_board
                 break
             end
 
