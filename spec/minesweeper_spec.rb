@@ -1,10 +1,11 @@
 require './minesweeper'
+require './mines'
 
 RSpec.describe 'Minesweeper' do
   describe '.start' do
     context 'クリアできなかった場合' do
       it '爆弾があったことを示す文字列が出力され、ゲームが中断される' do
-        allow(Minesweeper).to receive(:rand).and_return(0, 0, 1, 1)
+        allow(Mines).to receive(:rand).and_return(0, 0, 1, 1)
   
         allow(ARGF).to receive(:gets).and_return(StringIO.new('1,1').gets)
   
@@ -25,7 +26,7 @@ RSpec.describe 'Minesweeper' do
 
     context 'クリアできた場合' do
       it  'マスがすべて開き、正常にゲームが終了する' do
-        allow(Minesweeper).to receive(:rand).and_return(0, 0, 1, 1)
+        allow(Mines).to receive(:rand).and_return(0, 0, 1, 1)
   
         allow(ARGF).to receive(:gets).and_return(
           StringIO.new('1,2').gets,

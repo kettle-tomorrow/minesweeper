@@ -2,14 +2,9 @@ require './board'
 
 class Minesweeper
     def self.start
-      mine1 = [rand(0..2), rand(0..2)]
-      mine2 = [rand(0..2), rand(0..2)]
-
-      loop do
-        break if mine1 != mine2
-        mine2 = [rand(0..2), rand(0..2)]
-      end
-      board = Board.new(mines: [mine1, mine2])
+      board = Board.new(
+        mines: Mines.generate(mine_count: 2, x_max: 2, y_max: 2),
+      )
 
       puts "マインスイーパを開始します。"
       puts "爆弾は全部で#{2}個あります。"
